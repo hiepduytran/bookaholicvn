@@ -76,22 +76,24 @@ class Auth
             return false;
         }
     }
-
+    
+    // Đăng ký
     public function register() {
         require_once BASE_PATH . '/template/auth/register.php';
     }
 
     public function registerStore($request) {
         // Kiểm tra trường bắt buộc
-        if (empty($request['email']) || empty($request['username']) || empty($request['password']) || empty($request['confirm-password'])) {
+        if (empty($request['email']) || empty($request['username']) || empty($request['password'])) {
             flash('register_error', 'Tất cả các trường là bắt buộc');
             $this->redirectBack();
         } 
         // Kiểm tra mật khẩu và mật khẩu xác thực
-        else if ($request['password'] !== $request['confirm-password']) {
+        else if ($_POST['password'] !== $_POST['confirm-password']) {
             flash('register_error', 'Mật khẩu xác thực không trùng khớp');
             $this->redirectBack();
         } 
+
         // Kiểm tra độ dài mật khẩu
         else if (strlen($request['password']) < 8) {
             flash('register_error', 'Mật khẩu phải có độ dài tối thiểu 8 kí tự');
@@ -118,7 +120,6 @@ class Auth
                     $this->redirectBack();
                 }
                 // Sinh token và gửi email xác thực
-
                 $randomToken = $this->random();
                 $activationMessage = $this->activationMessage($request['username'], $randomToken);
                 $result = $this->sendMail($request['email'], 'Xác thực tài khoản', $activationMessage);
@@ -127,6 +128,7 @@ class Auth
                     // Lưu thông tin người dùng và token vào cơ sở dữ liệu
                     $request['verify_token'] = $randomToken;
                     $request['password'] = $this->hash($request['password']);
+                    unset($request['confirm-password']);
                     $db->insert('users', array_keys($request), array_values($request));
                     var_dump($request);
                     $this->redirect('login');
