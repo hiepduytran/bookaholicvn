@@ -42,7 +42,7 @@ require_once(BASE_PATH . '/template/app/layouts/header.php');
                     </div>
                     <div class="date-and-views">
                         <i class="bi bi-calendar"><?= $categoryPost['created_at'] ?></i>
-                        &nbsp; &nbsp;<i class="bi bi-eye"></i> <?= $categoryPost['view'] ?>
+                        &nbsp; &nbsp;<i class="bi bi-eye"><?= $categoryPost['view'] ?></i>
                         &nbsp; &nbsp;<i class="bi bi-chat"></i>
                         <?php
                         // Truy vấn để đếm số lượng comment cho bài đăng

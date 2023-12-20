@@ -105,7 +105,7 @@ class Home{
     
             $sidebarBanner= $db->select("SELECT * FROM `banners` LIMIT 0,1;")->fetch();
             $bodyBanner= $db->select("SELECT * FROM `banners` ORDER BY created_at DESC LIMIT 0,1;")->fetch();
-    
+        
             require_once (BASE_PATH . "/template/app/show-category.php");
         }
 
