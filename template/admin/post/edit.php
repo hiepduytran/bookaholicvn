@@ -7,7 +7,7 @@
 
 
 <section class="pt-3 pb-1 mb-2 border-bottom">
-    <h1 class="h5">Edit Article</h1>
+    <h1 class="h5">Cập nhật bài đăng</h1>
 </section>
 
 <section class="row my-3">
@@ -15,12 +15,12 @@
 
         <form method="post" action="<?= url('admin/post/update/' . $post['id']) ?>" enctype="multipart/form-data">
                 <div class="form-group">
-                    <label for="title">Title</label>
+                    <label for="title">Tiêu đề</label>
                     <input type="text" class="form-control" id="title" name="title" value="<?= $post['title'] ?>" required autofocus>
                 </div>
 
                 <div class="form-group">
-                    <label for="cat_id">Category</label>
+                    <label for="cat_id">Danh mục</label>
                     <select name="cat_id" id="cat_id" class="form-control" required autofocus>
                 <?php foreach ($categories as $category) { ?>
                  <option value="<?= $category['id'] ?>" <?php if($category['id'] == $post['cat_id']) echo 'selected' ?> >
@@ -34,28 +34,38 @@
         </div>
 
         <div class="form-group">
-            <label for="image">Image</label>
+            <label for="image">Ảnh</label>
             <input type="file" id="image" name="image" class="form-control-file"  autofocus>
         </div>
         <img src="<?= asset($post['image']) ?>" alt="">
 
         <div class="form-group">
-            <label for="published_at">published at</label>
+            <label for="published_at">Thời gian</label>
             <input type="text" class="form-control d-none" id="published_at" name="published_at">
             <input type="text" class="form-control" id="published_at_view" required autofocus>
         </div>
 
         <div class="form-group">
-            <label for="summary">summary</label>
+            <label for="summary">Tóm tắt</label>
             <textarea class="form-control" id="summary" name="summary" placeholder="summary ..." rows="3" required autofocus><?= $post['summary'] ?></textarea>
         </div>
 
-        <div class="form-group">
-            <label for="body">body</label>
+        <!-- <div class="form-group">
+            <label for="body">Nội dung</label>
             <textarea class="form-control" id="body" name="body" placeholder="body ..." rows="5" required autofocus><?= $post['body'] ?></textarea>
+        </div> -->
+
+        <div class="form-group">
+        <label for="body">Nội dung</label>
+        <textarea class="form-control" id="body" name="body" placeholder="Nội dung ..." rows="150" required autofocus><?= $post['body'] ?></textarea>
         </div>
 
-        <button type="submit" class="btn btn-primary btn-sm">Update</button>
+
+        <!-- <form method="post">
+        <textarea id="mytextarea">Hello, World!</textarea>
+        </form> -->
+
+        <button type="submit" class="btn btn-primary btn-sm">Cập nhật</button>
         </form>
         </section>
         </section>

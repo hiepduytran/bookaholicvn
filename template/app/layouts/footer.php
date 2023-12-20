@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-md-4 single-footer-widget text-left">
-                    <h4>Popular News</h4>
+                    <h4>News</h4>
                     <ul>
                         <?php foreach ($popularPosts as $popularPost) { ?>
                         <li><a href="<?= url('show-post/' . $popularPost['id']) ?>"><?= $popularPost['title'] ?></a></li>

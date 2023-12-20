@@ -266,8 +266,7 @@ class Auth
         }
     }
 
-    public function resetPasswordView($forgot_token)
-    {
+    public function resetPasswordView($forgot_token) {
         require_once BASE_PATH . '/template/auth/reset-password.php';
     }
 
