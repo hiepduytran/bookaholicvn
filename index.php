@@ -272,6 +272,8 @@ uri('home', 'App\Home', 'index');
 uri('show-post/{id}', 'App\Home', 'show');
 uri('show-category/{id}', 'App\Home', 'category');
 uri('comment-store', 'App\Home', 'commentStore', 'POST');
+uri('{page}', 'App\Home', 'index');
+// uri('{page}', 'App\Home', 'index')->where('page', '[0-9]+');
 
 echo '404 - not found';
 exit;

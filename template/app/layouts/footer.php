@@ -1,5 +1,5 @@
    <!-- start footer Area -->
-   <footer class="footer-area section-gap">
+   <!-- <footer class="footer-area section-gap">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-md-4 single-footer-widget text-left">
@@ -42,6 +42,14 @@
                 </div>
             </div>
         </div>
+    </footer> -->
+
+    <footer class="page-footer font-small d-flex" style="height: 8rem;">
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3 m-auto">
+            <p style="font-weight: 800; font-size: x-large;">POWERED BY BOOKAHOLICVN</p>
+        </div>
+        <!-- Copyright -->
     </footer>
     <!-- End footer Area -->
     <script src="<?= asset('public/app/js/vendor/jquery-2.2.4.min.js') ?>"></script>
@@ -59,6 +67,9 @@
     <script src="<?= asset('public/app/js/owl.carousel.min.js') ?>"></script>
     <script src="<?= asset('public/app/js/mail-script.js') ?>"></script>
     <script src="<?= asset('public/app/js/main.js') ?>"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+    </script>
 </body>
 
 </html>

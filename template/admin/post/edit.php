@@ -56,7 +56,7 @@
         </div> -->
 
         <div class="form-group">
-        <label for="body">Nội dung</label>
+            <label for="body">Nội dung</label>
         <textarea class="form-control" id="body" name="body" placeholder="Nội dung ..." rows="150" required autofocus><?= $post['body'] ?></textarea>
         </div>
 

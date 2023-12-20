@@ -51,7 +51,7 @@ require_once(BASE_PATH . '/template/admin/layouts/head-tag.php')
 
             <div class="form-group">
                 <label for="body">Nội dung</label>
-                <textarea class="form-control" id="body" name="body" placeholder="body ..." rows="150" required autofocus></textarea>
+            <textarea class="form-control" id="body" name="body" placeholder="Nội dung ..." rows="150" required autofocus><?= $post['body'] ?></textarea>
             </div>
 
             <button type="submit" class="btn btn-primary btn-sm">create</button>
