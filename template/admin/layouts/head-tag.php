@@ -95,3 +95,18 @@
             </nav>
 
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                <!-- Tiny Editor, import vào header của post/edit.php-->
+            <script src="https://cdn.tiny.cloud/1/gfrpd2xk27xmmrc57vy15k0f627fwsadpxbs0jvxdlhi15q2/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+            <script>
+               tinymce.init({
+                selector: '#body', // ID của textarea sẽ được chuyển đổi thành trình soạn thảo
+                plugins: 'autoresize autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+                toolbar: 'undo redo | formatselect | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media table',
+                autoresize_bottom_margin: 16,
+                setup: function (editor) {
+                    editor.on('change', function () {
+                        tinymce.triggerSave();
+                    });
+                }
+                });
+            </script>
