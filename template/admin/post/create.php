@@ -7,7 +7,7 @@ require_once(BASE_PATH . '/template/admin/layouts/head-tag.php')
 
 
 <section class="pt-3 pb-1 mb-2 border-bottom">
-    <h1 class="h5">Tạo bài đăng mới</h1>
+    <h1 class="h5">Tạo tác phẩm mới</h1>
 </section>
 
 <section class="row my-3">
@@ -16,7 +16,7 @@ require_once(BASE_PATH . '/template/admin/layouts/head-tag.php')
         <form method="post" action="<?= url('admin/post/store') ?>" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="title">Tiêu đề</label>
-                <input type="text" class="form-control" id="title" name="title" placeholder="Enter title ..." required autofocus>
+                <input type="text" class="form-control" id="title" name="title" placeholder="Nhập tiêu đề ..." required autofocus>
             </div>
 
             <div class="form-group">
@@ -46,15 +46,15 @@ require_once(BASE_PATH . '/template/admin/layouts/head-tag.php')
 
             <div class="form-group">
                 <label for="summary">Tóm tắt</label>
-                <textarea class="form-control" id="summary" name="summary" placeholder="summary ..." rows="3" required autofocus></textarea>
+                <textarea class="form-control" id="summary" name="summary" placeholder="Nhập tóm tắt ..." rows="3" required autofocus></textarea>
             </div>
 
             <div class="form-group">
                 <label for="body">Nội dung</label>
-            <textarea class="form-control" id="body" name="body" placeholder="Nội dung ..." rows="150" required autofocus><?= $post['body'] ?></textarea>
+                <textarea class="form-control" id="body" name="body" placeholder="Nhập nội dung ..." rows="150" required autofocus><?= $post['body'] ?></textarea>
             </div>
 
-            <button type="submit" class="btn btn-primary btn-sm">create</button>
+            <button type="submit" class="btn btn-primary btn-sm">Tạo mới</button>
         </form>
     </section>
 </section>

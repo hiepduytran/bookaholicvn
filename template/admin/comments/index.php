@@ -24,22 +24,22 @@ $comments = $db->select($commentsQuery);
 ?>
 
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h5"><i class="fas fa-comments"></i> Comments</h1>
+    <h1 class="h5"><i class="fas fa-comments"></i> Bình luận</h1>
     <div class="btn-toolbar mb-2 mb-md-0 d-none">
-        <a role="button" href="#" class="btn btn-sm btn-success disabled">create</a>
+        <a role="button" href="#" class="btn btn-sm btn-success disabled">Tạo mới</a>
     </div>
 </div>
 
 <div class="mb-3">
     <form id="filterForm" class="form-inline" method="GET" action="<?= url('admin/comment/') ?>">
-        <label for="postIdFilter" class="mr-2">Filter by Post ID:</label>
+        <label for="postIdFilter" class="mr-2">Lọc theo ID tác phẩm:</label>
         <select name="postIdFilter" id="postIdFilter" class="form-control mr-2">
-            <option value="">All</option>
+            <option value="">Tất cả</option>
             <?php foreach ($uniquePostIds as $postId) { ?>
                 <option value="<?= $postId ?>" <?= ($postIdFilter == $postId) ? 'selected' : '' ?>><?= $postId ?></option>
             <?php } ?>
         </select>
-        <button type="submit" class="btn btn-primary">Filter</button>
+        <button type="submit" class="btn btn-primary">Lọc</button>
     </form>
 </div>
 
@@ -49,12 +49,12 @@ $comments = $db->select($commentsQuery);
         <thead>
             <tr>
                 <th style="text-align: center;">#</th>
-                <th style="text-align: center;">User Email</th>
-                <th style="text-align: center;">Post Title</th>
-                <th style="text-align: center;">Post ID</th>
-                <th style="text-align: center;">Comment</th>
-                <th style="text-align: center;">Status</th>
-                <th style="text-align: center;">Actions</th>
+                <th style="text-align: center;">Email người dùng</th>
+                <th style="text-align: center;">Tiêu đề tác phẩm</th>
+                <th style="text-align: center;">ID tác phẩm</th>
+                <th style="text-align: center;">Bình luận</th>
+                <th style="text-align: center;">Trạng thái</th>
+                <th style="text-align: center;">Hành động</th>
             </tr>
         </thead>
         <tbody>
@@ -80,9 +80,9 @@ $comments = $db->select($commentsQuery);
                     </td>
                     <td style="text-align: center;">
                         <?php if ($comment['status'] == 'seen') { ?>
-                            <a role="button" class="btn btn-sm btn-success text-white" href="<?= url('admin/comment/change-status/' . $comment['id']) ?>">click to approved</a>
+                            <a role="button" class="btn btn-sm btn-success text-white" href="<?= url('admin/comment/change-status/' . $comment['id']) ?>">Duyệt</a>
                         <?php } else { ?>
-                            <a role="button" class="btn btn-sm btn-warning text-white" href="<?= url('admin/comment/change-status/' . $comment['id']) ?>">click not to approved</a>
+                            <a role="button" class="btn btn-sm btn-warning text-white" href="<?= url('admin/comment/change-status/' . $comment['id']) ?>">Hủy duyệt</a>
                         <?php } ?>
                     </td>
                 </tr>
