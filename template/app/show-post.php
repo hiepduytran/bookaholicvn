@@ -47,17 +47,19 @@ require_once(BASE_PATH . '/template/app/layouts/header.php');
 
                         <!-- End: Hiển thị bình luận -->
                         <?php if (isset($_SESSION['user'])) { ?>
-                            <div class="comment-form">
-                                <h4>Thêm bình luận</h4>
-                                <form action="<?= url('comment-store') ?>" method="post">
-                                    <div class="form-group">
-                                        <input type="text" value="<?= $id ?>" name="post_id" class="d-none">
-                                        <textarea class="form-control mb-10 text-left" rows="10" name="comment" placeholder="Nhập bình luận của bạn" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nhập bình luận của bạn'" required=""></textarea>
-                                    </div>
-                                    <button type="submit" class="btn btn-secondary">Gửi bình luận</button>
+                            <h4>Thêm bình luận</h4>
+                            <div class="form-group">
+                                <form class="p-4" action="<?= url('comment-store') ?>" method="get">
+                                    <input type="text" value="<?= $post['id'] ?>" name="post_id" class="d-none">
+                                    <textarea class="form-control" rows="5" name="comment" placeholder="Nhập bình luận của bạn..." onfocus="this.placeholder = ''" onblur="this.placeholder = 'text'" required=""></textarea>
+                                    <div class="d-flex justify-content-end mt-20">
+                                        <button type="submit"class="btn btn-secondary"> Gửi bình luận</button>
+                                    </div> 
                                 </form>
                             </div>
-                        <?php } ?> 
+                        <?php } ?>
+                        <!-- Kết thúc bình luận -->
+
                         <!-- End bình luận -->
                     </div>
                 </form>
