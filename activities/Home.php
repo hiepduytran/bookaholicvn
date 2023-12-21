@@ -53,6 +53,8 @@ class Home
 
                 $popularPosts = $db->select('SELECT posts.*, (SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id) AS comments_count, (SELECT username FROM users WHERE users.id = posts.user_id) AS username, (SELECT name FROM categories WHERE categories.id = posts.cat_id) AS category FROM posts  ORDER BY view DESC LIMIT 0, 3')->fetchAll();
 
+                $relatedPosts = $db->select('SELECT posts.*, (SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id) AS comments_count, (SELECT username FROM users WHERE users.id = posts.user_id) AS username, (SELECT name FROM categories WHERE categories.id = posts.cat_id) AS category FROM posts WHERE cat_id = ? AND id != ? ORDER BY RAND() LIMIT 3', [$post['cat_id'], $id])->fetchAll();
+
                 $mostCommentsPosts = $db->select('SELECT posts.*, (SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id) AS comments_count, (SELECT username FROM users WHERE users.id = posts.user_id) AS username, (SELECT name FROM categories WHERE categories.id = posts.cat_id) AS category FROM posts  ORDER BY comments_count DESC LIMIT 0, 4')->fetchAll();
 
                 require_once(BASE_PATH . '/template/app/show-post.php');
@@ -102,7 +104,8 @@ class Home
         }
 
         // Trong file get_category.php
-        public function get_category() {
+        public function get_category()
+        {
                 $db = new DataBase();
                 $categories = $db->select("SELECT * FROM `categories`;")->fetchAll(); // Use fetchAll() to get all rows
 

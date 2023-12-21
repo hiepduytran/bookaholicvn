@@ -69,32 +69,32 @@ require_once(BASE_PATH . '/template/app/layouts/header.php');
         </div>
         <!-- End: Chi tiết bài đăng -->
 
-        <!-- Bài viết mới nhất -->
+        <!-- Bài viết liên quan -->
         <div class="col-4 bg-white rounded" style="height: fit-content;">
-            <h4 class="pt-2">Bài viết mới nhất</h4>
+            <h4 class="pt-2">Bài viết liên quan</h4>
             <div class="content-container mb-4">
-                <?php foreach ($popularPosts as $post) : ?>
+                <?php foreach ($relatedPosts as $relatedPost) : ?>
                     <div class="content-container m-3">
                         <div class="post-header">
-                            <a href="<?= url('show-post/' . $post['id']) ?>" class="post-header-link"><?= $post['title'] ?></a>
+                            <a href="<?= url('show-post/' . $relatedPost['id']) ?>" class="post-header-link"><?= $relatedPost['title'] ?></a>
                         </div>
                         <div class="image-container">
-                            <img class="w-100 zoom-image" src="<?= asset($post['image']) ?>" alt="<?= $post['title'] ?>">
+                            <img class="w-100 zoom-image" src="<?= asset($relatedPost['image']) ?>" alt="<?= $relatedPost['title'] ?>">
                         </div>
                         <div class="text-container post-content">
-                            <p class="truncate-text"><?= $post['summary'] ?></p>
-                            <a class="continue-reading-link" href="<?= url('show-post/' . $post['id']) ?>">Đọc tiếp</a>
+                            <p class="truncate-text"><?= $relatedPost['summary'] ?></p>
+                            <a class="continue-reading-link" href="<?= url('show-post/' . $relatedPost['id']) ?>">Đọc tiếp</a>
                         </div>
                         <div class="date-and-views">
-                            <i class="bi bi-calendar"><?= $post['created_at'] ?></i>
-                            <i class="bi bi-eye"> <?= $post['view'] ?></i>
-                            <i class="bi bi-chat"> <?= $post['comments_count'] ?></i>
+                            <i class="bi bi-calendar"><?= $relatedPost['created_at'] ?></i>
+                            <i class="bi bi-eye"> <?= $relatedPost['view'] ?></i>
+                            <i class="bi bi-chat"> <?= $relatedPost['comments_count'] ?></i>
                         </div>
                     </div>
                 <?php endforeach; ?>
             </div>
         </div>
-        <!-- End Bài viết mới nhất -->
+        <!-- End: Bài viết liên quan -->
     </div>
 </div>
 

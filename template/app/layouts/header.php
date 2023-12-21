@@ -19,10 +19,12 @@
 
 <body>
     <header>
-        <img class="header-img" src="https://scontent.xx.fbcdn.net/v/t1.15752-9/398453771_1550852109015797_3736781129414547725_n.png?_nc_cat=104&ccb=1-7&_nc_sid=510075&_nc_ohc=hgWcUep1O5EAX9VTVEV&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AdTUp-nZg3w1EhL1lp2MnaPc70AUxS4-AC4_dZX0x1x3Ng&oe=65AA1EBD" alt="">
+        <?php if (!empty($bodyBanner)) { ?>
+            <img class="header-img" src="<?= asset($bodyBanner['image']) ?>" alt="">
+        <?php } else { ?>
+            <img class="header-img" src="https://scontent.xx.fbcdn.net/v/t1.15752-9/398453771_1550852109015797_3736781129414547725_n.png?_nc_cat=104&ccb=1-7&_nc_sid=510075&_nc_ohc=hgWcUep1O5EAX9VTVEV&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AdTUp-nZg3w1EhL1lp2MnaPc70AUxS4-AC4_dZX0x1x3Ng&oe=65AA1EBD" alt="">
+        <?php } ?>
     </header>
-
-
 
     <nav class="navbar navbar-expand-lg bg-white">
         <div class="container-fluid">
@@ -32,10 +34,11 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Trang chủ</a>
-                    </li>
-
+                    <?php foreach ($menus as $menu) { ?>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="<?= $menu['url'] ?>"><?= $menu['name'] ?></a>
+                        </li>
+                    <?php } ?>
 
                     <?php
                     // Kiểm tra và sử dụng biến $categories từ file home.php nếu đã được định nghĩa

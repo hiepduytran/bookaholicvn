@@ -80,9 +80,9 @@ $comments = $db->select($commentsQuery);
                     </td>
                     <td style="text-align: center;">
                         <?php if ($comment['status'] == 'seen') { ?>
-                            <a role="button" class="btn btn-sm btn-success text-white" href="<?= url('admin/comment/change-status/' . $comment['id']) ?>">Chưa xem</a>
+                            <a role="button" class="btn btn-sm btn-success text-white" href="<?= url('admin/comment/change-status/' . $comment['id']) ?>">Duyệt</a>
                         <?php } else { ?>
-                            <a role="button" class="btn btn-sm btn-warning text-white" href="<?= url('admin/comment/change-status/' . $comment['id']) ?>">Đã xem</a>
+                            <a role="button" class="btn btn-sm btn-warning text-white" href="<?= url('admin/comment/change-status/' . $comment['id']) ?>">Hủy duyệt</a>
                         <?php } ?>
                     </td>
                 </tr>
