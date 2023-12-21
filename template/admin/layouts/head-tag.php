@@ -45,20 +45,22 @@
             <nav class="col-md-2 d-none d-md-block pt-3 bg-sidebar sidebar px-0">
 
                 <div class="logo d-flex justify-content-center align-items-center" style="margin-bottom: 20px;">
-                    <img src="<?= asset('public/admin-panel/images/logo.png') ?>" alt="" width="60px" height="60px">
+                    <a href="<?= url('admin') ?>">
+                        <img src="<?= asset('public/admin-panel/images/logo.png') ?>" alt="" width="60px" height="60px">
+                    </a>
                 </div>
 
-                <a class="text-decoration-none d-block py-1 px-2 mt-1" href="<?= url('admin') ?>"><i class="fas fa-home"></i> Home</a>
-                <a class="text-decoration-none d-block py-1 px-2 mt-1" href="<?= url('admin/category') ?>"><i class="fas fa-clipboard-list"></i> Category</a>
-                <a class="text-decoration-none d-block py-1 px-2 mt-1" href="<?= url('admin/post') ?>"><i class="fas fa-newspaper"></i> Post</a>
-                <a class="text-decoration-none d-block py-1 px-2 mt-1" href="<?= url('admin/banner') ?>"><i class="fas fa-image"></i> Banner</a>
-                <a class="text-decoration-none d-block py-1 px-2 mt-1" href="<?= url('admin/comment') ?>"><i class="fas fa-comments"></i> Comment</a>
+                <a class="text-decoration-none d-block py-1 px-2 mt-1" href="<?= url('admin') ?>"><i class="fas fa-home"></i> Trang chủ</a>
+                <a class="text-decoration-none d-block py-1 px-2 mt-1" href="<?= url('admin/category') ?>"><i class="fas fa-clipboard-list"></i> Danh mục</a>
+                <a class="text-decoration-none d-block py-1 px-2 mt-1" href="<?= url('admin/post') ?>"><i class="fas fa-newspaper"></i> Tác phẩm</a>
+                <a class="text-decoration-none d-block py-1 px-2 mt-1" href="<?= url('admin/banner') ?>"><i class="fas fa-image"></i> Ảnh banner</a>
+                <a class="text-decoration-none d-block py-1 px-2 mt-1" href="<?= url('admin/comment') ?>"><i class="fas fa-comments"></i> Bình luận</a>
                 <a class="text-decoration-none d-block py-1 px-2 mt-1" href="<?= url('admin/menu') ?>"><i class="fas fa-bars"></i> Menus</a>
-                <a class="text-decoration-none d-block py-1 px-2 mt-1" href="<?= url('admin/user') ?>"><i class="fas fa-users"></i> User</a>
-                <a class="text-decoration-none d-block py-1 px-2 mt-1" href="<?= url('admin/web-setting') ?>"><i class="fas fa-tools"></i> Web Setting</a>
+                <a class="text-decoration-none d-block py-1 px-2 mt-1" href="<?= url('admin/user') ?>"><i class="fas fa-users"></i> Người dùng</a>
+                <a class="text-decoration-none d-block py-1 px-2 mt-1" href="<?= url('admin/web-setting') ?>"><i class="fas fa-tools"></i> Cài đặt trang web</a>
 
-                <a class="text-decoration-none d-block py-1 px-2 mt-1" href="#"><i class="far fa-question-circle"></i> Suport</a>
-                <a class="text-decoration-none d-block py-1 px-2 mt-1" href="#"><i class="fas fa-cog"></i> Settings</a>
+                <a class="text-decoration-none d-block py-1 px-2 mt-1" href="#"><i class="far fa-question-circle"></i> Hỗ trợ</a>
+                <a class="text-decoration-none d-block py-1 px-2 mt-1" href="#"><i class="fas fa-cog"></i> Cài đặt</a>
 
                 <div class="infor d-flex justify-content-center align-items-center">
                     <img src="<?= asset('public/admin-panel/images/avatar.png') ?>" alt="" width="40px" height="40px">
@@ -86,7 +88,7 @@
                             <span class="dropright">
                                 <i class="fas fa-ellipsis-v" data-toggle="dropdown"></i>
                                 <div class="dropdown-menu dropdown-menu-right" style="top: -20px;">
-                                    <a class="dropdown-item" href="<?= url('logout') ?>">Logout</a>
+                                    <a class="dropdown-item" href="<?= url('logout') ?>">Đăng xuất</a>
                                 </div>
                             </span>
                         </span>
@@ -96,17 +98,17 @@
 
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
                 <!-- Tiny Editor, import vào header của post/edit.php-->
-            <script src="https://cdn.tiny.cloud/1/gfrpd2xk27xmmrc57vy15k0f627fwsadpxbs0jvxdlhi15q2/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-            <script>
-               tinymce.init({
-                selector: '#body', // ID của textarea sẽ được chuyển đổi thành trình soạn thảo
-                plugins: 'autoresize autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
-                toolbar: 'undo redo | formatselect | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media table',
-                autoresize_bottom_margin: 16,
-                setup: function (editor) {
-                    editor.on('change', function () {
-                        tinymce.triggerSave();
+                <script src="https://cdn.tiny.cloud/1/gfrpd2xk27xmmrc57vy15k0f627fwsadpxbs0jvxdlhi15q2/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+                <script>
+                    tinymce.init({
+                        selector: '#body', // ID của textarea sẽ được chuyển đổi thành trình soạn thảo
+                        plugins: 'autoresize autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+                        toolbar: 'undo redo | formatselect | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media table',
+                        autoresize_bottom_margin: 16,
+                        setup: function(editor) {
+                            editor.on('change', function() {
+                                tinymce.triggerSave();
+                            });
+                        }
                     });
-                }
-                });
-            </script>
+                </script>
