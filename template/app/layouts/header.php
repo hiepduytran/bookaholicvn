@@ -22,7 +22,7 @@
         <img class="header-img" src="https://scontent.xx.fbcdn.net/v/t1.15752-9/398453771_1550852109015797_3736781129414547725_n.png?_nc_cat=104&ccb=1-7&_nc_sid=510075&_nc_ohc=hgWcUep1O5EAX9VTVEV&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AdTUp-nZg3w1EhL1lp2MnaPc70AUxS4-AC4_dZX0x1x3Ng&oe=65AA1EBD" alt="">
     </header>
 
-    
+
 
     <nav class="navbar navbar-expand-lg bg-white">
         <div class="container-fluid">
@@ -35,7 +35,7 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Trang chủ</a>
                     </li>
-                   
+
 
                     <?php
                     // Kiểm tra và sử dụng biến $categories từ file home.php nếu đã được định nghĩa
@@ -55,28 +55,18 @@
                     <input class="form-control me-2" type="search" name="Search-box" id="Search-box" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
-
                 <?php
-                // Start session
-                if (session_status() == PHP_SESSION_NONE) {
-                    session_start();
-                }
-
-                // Get id from session
-                $user_id = isset($_SESSION['user_logged_in']) ? $_SESSION['user_logged_in'] : null;
-
-                // Print sesion to test
-                echo '<pre>';
-                print_r($_SESSION['user']);
-                echo '</pre>';
+                if (isset($_SESSION['user'])) {
                 ?>
-
-                <?php if (!empty($user_id)) : ?>
                     <button class="btn"><a href="<?= url('logout') ?>">Đăng xuất</a></button>
-                <?php else : ?>
+                <?php
+                } else {
+                ?>
                     <button class="btn"><a href="<?= url('register') ?>">Đăng ký</a></button>
                     <button class="btn"><a href="<?= url('login') ?>">Đăng nhập</a></button>
-                <?php endif; ?>
+                <?php
+                }
+                ?>
 
             </div>
         </div>

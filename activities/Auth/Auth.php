@@ -217,7 +217,7 @@ class Auth
             unset($_SESSION['user']);
             session_destroy();
         }
-        $this->redirect('login');
+        $this->redirect('home');
 
     }
 
