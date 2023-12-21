@@ -7,7 +7,7 @@
 
 
 <section class="pt-3 pb-1 mb-2 border-bottom">
-    <h1 class="h5">Cập nhật tác phẩm</h1>
+    <h1 class="h5">Cập nhật bài đăng</h1>
 </section>
 
 <section class="row my-3">
@@ -47,17 +47,12 @@
 
         <div class="form-group">
             <label for="summary">Tóm tắt</label>
-            <textarea class="form-control" id="summary" name="summary" placeholder="Nhập tóm tắt ..." rows="3" required autofocus><?= $post['summary'] ?></textarea>
+            <textarea class="form-control" id="summary" name="summary" placeholder="summary ..." rows="3" required autofocus><?= $post['summary'] ?></textarea>
         </div>
-
-        <!-- <div class="form-group">
-            <label for="body">Nội dung</label>
-            <textarea class="form-control" id="body" name="body" placeholder="body ..." rows="5" required autofocus><?= $post['body'] ?></textarea>
-        </div> -->
 
         <div class="form-group">
             <label for="body">Nội dung</label>
-        <textarea class="form-control" id="body" name="body" placeholder="Nhập nội dung ..." rows="150" required autofocus><?= $post['body'] ?></textarea>
+        <textarea class="form-control" id="body" name="body" placeholder="Nội dung ..." rows="150" required autofocus><?= $post['body'] ?></textarea>
         </div>
 
 

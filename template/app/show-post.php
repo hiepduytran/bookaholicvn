@@ -46,18 +46,18 @@ require_once(BASE_PATH . '/template/app/layouts/header.php');
                         <?php } ?>
 
                         <!-- End: Hiển thị bình luận -->
-                        <?php if (isset($_SESSION['user'])) { ?>
+                        <?php if(isset($_SESSION['user'])) { ?>
                             <div class="comment-form">
                                 <h4>Thêm bình luận</h4>
-                                <form action="<?= url('comment-store') ?>" method="post">
+                                <form action="<?= url('show-post') ?>" method="post">
                                     <div class="form-group">
-                                        <input type="text" value="<?= $id ?>" name="post_id" class="d-none">
-                                        <textarea class="form-control mb-10 text-left" rows="10" name="comment" placeholder="Nhập bình luận của bạn" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nhập bình luận của bạn'" required=""></textarea>
+                                            <input type="text" value="<?= $id ?>" name="post_id" class="d-none">
+                                        <textarea class="form-control mb-10 text-left" rows="5" name="comment" placeholder="Nhập bình luận của bạn..." onfocus="this.placeholder = ''" onblur="this.placeholder = 'text'" required=""></textarea>
                                     </div>
-                                    <button type="submit" class="btn btn-secondary">Gửi bình luận</button>
+                                    <button type="submit" class="primary-btn text-uppercase">Gửi bình luận</button>
                                 </form>
                             </div>
-                        <?php } ?> 
+                        <?php } ?>
                         <!-- End bình luận -->
                     </div>
                 </form>
