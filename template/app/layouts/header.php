@@ -1,86 +1,59 @@
 <!DOCTYPE html>
-<html lang="zxx" class="no-js">
+<html lang="en">
 
 <head>
-    <!-- Mobile Specific Meta -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Favicon-->
-    <link rel="shortcut icon" href="<?=asset($setting['icon'])?>">
-    <!-- Meta Description -->
-    <meta name="description" content="<?=$setting['description']?>">
-    <!-- Meta Keyword -->
-    <meta name="keywords" content="<?=$setting['keywords']?>">
-    <!-- meta character set -->
-    <meta charset="UTF-8">
-    <!-- Site Title -->
-    <title><?=$setting['title']?></title>
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
-    <!--
-		CSS
-		============================================= -->
+    <title>BookaholicVn</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="<?=asset('public/app/css/linearicons.css')?>">
     <link rel="stylesheet" href="<?=asset('public/app/css/font-awesome.min.css')?>">
-    <link rel="stylesheet" href="<?=asset('public/app/css/bootstrap.css')?>">
     <link rel="stylesheet" href="<?=asset('public/app/css/magnific-popup.css')?>">
     <link rel="stylesheet" href="<?=asset('public/app/css/nice-select.css')?>">
     <link rel="stylesheet" href="<?=asset('public/app/css/animate.min.css')?>">
     <link rel="stylesheet" href="<?=asset('public/app/css/owl.carousel.css')?>">
     <link rel="stylesheet" href="<?=asset('public/app/css/jquery-ui.css')?>">
-    <link rel="stylesheet" href="<?=asset('public/app/css/main.css')?>">
+    <link rel="stylesheet" href="<?= asset('public/app/css/home.css') ?>">
 </head>
 
 <body>
     <header>
-
-        <div class="header-top" style="padding-bottom:30px;">
-            <div class="container">
-                <div class="row text-left float-left mb-10">
-
-                <div class="header-top-left no-padding ">
-                        <ul>
-                            <li><a href="<?= url('login') ?>"><span class="lnr lnr-enter-down"></span><span style="font-size:15px;">  Login</span></a></li>
-                            <li><a href="<?= url('register') ?>"><span class="lnr lnr-user"></span><span style="font-size:15px;">  Register</span></a></li>
-
-                        </ul>
-                    </div>
-
-                    <div class="header-top-left no-padding text-dark">
-                        <ul>
-                            <li><span>ONLINE  NEWS</span></li>
-                        </ul>
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-        <div class="container main-menu" id="main-menu">
-            <div class="row align-items-center justify-content-between">
-            <div class="navbar-right">
-                    <form class="Search">
-                        <input type="text" class="form-control Search-box text-left" name="Search-box" id="Search-box" placeholder="Search">
-                        <label for="Search-box" class="Search-box-label">
-								<span class="lnr lnr-magnifier"></span>
-							</label>
-                        <span class="Search-close">
-								<span class="lnr lnr-cross"></span>
-                        </span>
-                    </form>
-                </div>
-            <nav id="nav-menu-container">
-                    <ul class="nav-menu">
-                            <?php foreach ($menus as $menu) {?>
-                        <li class="menu-active">
-                                <a href="<?=$menu['url']?>">
-                                <?=$menu['name']?>
-                                </a></li>
-                        <?php }?>
-                    </ul>
-                </nav>
-
-                
-
-                <!-- #nav-menu-container -->
-
-            </div>
-        </div>
+        <img class="header-img" src="https://scontent.xx.fbcdn.net/v/t1.15752-9/398453771_1550852109015797_3736781129414547725_n.png?_nc_cat=104&ccb=1-7&_nc_sid=510075&_nc_ohc=hgWcUep1O5EAX9VTVEV&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AdTUp-nZg3w1EhL1lp2MnaPc70AUxS4-AC4_dZX0x1x3Ng&oe=65AA1EBD" alt="">
     </header>
+
+    <nav class="navbar navbar-expand-lg bg-white">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Trang chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Văn học</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Cộng đồng</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Giải trí</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Đời sống</a>
+                    </li>
+                </ul>
+
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" name="Search-box" id="Search-box" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+
+                <button class="btn">Đăng ký</button>
+                <button class="btn">Đăng nhập</button>
+            </div>
+        </div>
+    </nav>

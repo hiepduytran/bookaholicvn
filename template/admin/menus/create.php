@@ -6,20 +6,20 @@ require_once BASE_PATH . '/template/admin/layouts/head-tag.php';
 
 
 <section class="pt-3 pb-1 mb-2 border-bottom">
-    <h1 class="h5">Create Menu</h1>
+    <h1 class="h5">Tạo Menu mới</h1>
 </section>
 
 <section class="row my-3">
     <section class="col-12">
         <form method="post" action="<?= url('admin/menu/store') ?>">
             <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="Enter name ..." required>
+                <label for="name">Tên</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Nhập tên ..." required>
             </div>
 
             <div class="form-group">
                 <label for="url">URL</label>
-                <input type="text" class="form-control" id="url" name="url" placeholder="Enter url ..." required>
+                <input type="text" class="form-control" id="url" name="url" placeholder="Nhập URL ..." required>
             </div>
 
             <!-- <div class="form-group">
@@ -36,7 +36,7 @@ require_once BASE_PATH . '/template/admin/layouts/head-tag.php';
                 </select>
             </div> -->
 
-            <button type="submit" class="btn btn-primary btn-sm">create</button>
+            <button type="submit" class="btn btn-primary btn-sm">Tạo mới</button>
         </form>
     </section>
 </section>

@@ -7,7 +7,7 @@ require_once(BASE_PATH . '/template/admin/layouts/head-tag.php');
 
 
 <section class="pt-3 pb-1 mb-2 border-bottom">
-    <h1 class="h5">Edit Banner</h1>
+    <h1 class="h5">Cập nhật Ảnh banner</h1>
 </section>
 
 <section class="row my-3">
@@ -21,14 +21,14 @@ require_once(BASE_PATH . '/template/admin/layouts/head-tag.php');
 
 
             <div class="form-group">
-                <label for="image">Image</label>
+                <label for="image">Ảnh</label>
                 <input type="file" id="image" name="image" class="form-control-file" autofocus>
             </div>
             <img style="width: 80px;" src="<?= asset($banner['image']) ?>" alt="">
             <br>
 
 
-            <button type="submit" class="btn btn-primary btn-sm">Update</button>
+            <button type="submit" class="btn btn-primary btn-sm">Cập nhật</button>
         </form>
     </section>
 </section>
