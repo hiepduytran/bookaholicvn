@@ -45,8 +45,8 @@ require_once(BASE_PATH . "/template/admin/layouts/head-tag.php");
                 <div class="card-body">
                     <!--<h5 class="card-title">Info card title</h5>-->
                     <section class="d-flex justify-content-between align-items-center font-12">
-                        <span class=""><i class="fa fa-eye-slash"></i> Chưa duyệt <span class="badge badge-pill mx-1"><?= $commentsUnseenCount['COUNT(*)']; ?></span></span>
-                        <span class=""><i class="fa fa-check-circle"></i> Duyệt <span class="badge badge-pill mx-1"><?= $commentsApprovedCount['COUNT(*)']; ?></span></span>
+                        <span class=""><i class="fa fa-eye-slash"></i> Chưa xem <span class="badge badge-pill mx-1"><?= $commentsUnseenCount['COUNT(*)']; ?></span></span>
+                        <span class=""><i class="fa fa-check-circle"></i> Đã xem <span class="badge badge-pill mx-1"><?= $commentsApprovedCount['COUNT(*)']; ?></span></span>
                     </section>
                 </div>
             </div>

@@ -14,7 +14,7 @@ class Dashboard extends Admin
         $postCount = $db->select('SELECT COUNT(*) FROM `posts`  ;')->fetch();
         $postsViews = $db->select('SELECT SUM(view) FROM `posts`  ;')->fetch();
         $commentsCount = $db->select('SELECT COUNT(*) FROM `comments`  ;')->fetch();
-        $commentsUnseenCount = $db->select("SELECT COUNT(*) FROM `comments` WHERE `status` = 'seen' ;")->fetch();
+        $commentsUnseenCount = $db->select("SELECT COUNT(*) FROM `comments` WHERE `status` = 'unseen' ;")->fetch();
         $commentsApprovedCount = $db->select("SELECT COUNT(*) FROM `comments` WHERE `status` = 'approved' ;")->fetch();
         $userCount = $db->select("SELECT COUNT(*) FROM `users` WHERE `permission` = 'user';")->fetch();
         $adminCount = $db->select("SELECT COUNT(*) FROM `users` WHERE `permission` = 'admin' ;")->fetch();
