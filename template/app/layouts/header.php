@@ -56,9 +56,28 @@
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
                 <?php
+
+                use database\DataBase;
+
                 if (isset($_SESSION['user'])) {
+
+                    $db = new DataBase();
+                    $userInfo = $db->select("SELECT username, email FROM users WHERE id = ?", [$_SESSION['user']])->fetch();
+                    if ($userInfo) {
                 ?>
-                    <button class="btn"><a href="<?= url('logout') ?>">Đăng xuất</a></button>
+                        <ul class="navbar-nav ms-5">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle me-5" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <?= $userInfo['username'] ?>
+                                </a>
+                                <ul class="dropdown-menu" style="min-width: 7rem;">
+                                    <li><a class="dropdown-item" href="<?= url('logout') ?>">Đăng xuất</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    <?php
+                    }
+                    ?>
                 <?php
                 } else {
                 ?>
@@ -67,7 +86,6 @@
                 <?php
                 }
                 ?>
-
             </div>
         </div>
     </nav>
