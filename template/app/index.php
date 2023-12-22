@@ -1,6 +1,9 @@
 <?php
 require_once(BASE_PATH . '/template/app/layouts/header.php');
 ?>
+ <?php
+        use database\DataBase;
+    ?>
 
 <div class="container-fluid wrap pt-3">
     <!-- breakings news -->
@@ -51,9 +54,17 @@ require_once(BASE_PATH . '/template/app/layouts/header.php');
                             <div class="post-header">
                                 <a href="<?= url('show-post/' . $post['id']) ?>" class="post-header-link"><?= $post['title'] ?></a>
                             </div>
+
+                            <?php
+                                    $db = new DataBase();
+                                    $category = $db->select("SELECT name FROM categories WHERE id = ?", [$post['cat_id']])->fetchAll();
+                            ?>
+
                             <div class="image-container">
                                 <img class="w-100 zoom-image" src="<?= asset($post['image']) ?>" alt="<?= $post['title'] ?>">
-                            </div>
+                                <div class="image-tag"><?= $category[0]['name'] ?></div>
+                            </div> 
+
                             <div class="text-container post-content">
                                 <p class="truncate-text"><?= $post['summary'] ?></p>
                                 <a class="continue-reading-link" href="<?= url('show-post/' . $post['id']) ?>">Đọc tiếp</a>
@@ -87,9 +98,17 @@ require_once(BASE_PATH . '/template/app/layouts/header.php');
                             <div class="post-header">
                                 <a href="<?= url('show-post/' . $post['id']) ?>" class="post-header-link"><?= $post['title'] ?></a>
                             </div>
+                            <!-- Thêm tag -->
+                            <?php
+                                    $db = new DataBase();
+                                    $category = $db->select("SELECT name FROM categories WHERE id = ?", [$post['cat_id']])->fetchAll();
+                            ?>
+
                             <div class="image-container">
                                 <img class="w-100 zoom-image" src="<?= asset($post['image']) ?>" alt="<?= $post['title'] ?>">
-                            </div>
+                                <div class="image-tag"><?= $category[0]['name'] ?></div>
+                            </div> 
+
                             <div class="text-container post-content">
                                 <p class="truncate-text"><?= $post['summary'] ?></p>
                                 <a class="continue-reading-link" href="<?= url('show-post/' . $post['id']) ?>">Đọc tiếp</a>

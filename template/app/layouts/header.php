@@ -59,7 +59,7 @@
 
                     <!-- Active link when user click -->
                     <?php foreach ($categories as $category) { ?>
-                        <li class="nav-item">
+                        <li class="nav-item" style = "font-weight: 700">
                             <a class="nav-link <?php echo ($category['id'] == $selectedCategoryId) ? 'active' : ''; ?>"
                             href="<?= url('show-category/' . $category['id']) ?>">
                                 <?= $category['name'] ?>
@@ -72,7 +72,7 @@
 
                 <form class="d-flex" role="search" action="<?= url('search') ?>">
                     <input class="form-control me-2" type="search" name="Search-box" id="Search-box" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Tìm kiếm</button>
+                    <button class="btn btn-outline-success" type="submit" style="white-space: nowrap;">Tìm kiếm</button>
                 </form>
 
                 <!-- Processing login, logout -->
