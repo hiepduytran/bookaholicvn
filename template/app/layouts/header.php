@@ -63,9 +63,9 @@
                 use database\DataBase;
 
                 if (isset($_SESSION['user'])) {
-
                     $db = new DataBase();
                     $userInfo = $db->select("SELECT username, email FROM users WHERE id = ?", [$_SESSION['user']])->fetch();
+
                     if ($userInfo) {
                 ?>
                         <ul class="navbar-nav ms-5">
@@ -80,10 +80,8 @@
                         </ul>
                     <?php
                     }
-                    ?>
-                <?php
                 } else {
-                ?>
+                    ?>
                     <button class="btn"><a href="<?= url('register') ?>">Đăng ký</a></button>
                     <button class="btn"><a href="<?= url('login') ?>">Đăng nhập</a></button>
                 <?php

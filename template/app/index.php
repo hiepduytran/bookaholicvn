@@ -69,32 +69,46 @@ require_once(BASE_PATH . '/template/app/layouts/header.php');
             <?php endif; ?>
         </div>
 
-        <div class="col-7" id="lastest-posts-column">
+        <div class="col-7" id="latest-posts-column">
             <?php
-            // Số lượng bài viết mỗi trang
             $postsPerPage = 3;
-
-            // Tổng số bài viết
             $totalPosts = count($lastPosts);
-
-            // Tổng số trang
             $totalPages = ceil($totalPosts / $postsPerPage);
-
-            // Trang hiện tại
-            $currentPage = isset($_GET['lastPage']) ? intval($_GET['lastPage']) : 1;
-
-            // Index của bài viết đầu tiên trên trang hiện tại
+            $currentPage = isset($_GET['page']) ? max(1, min(intval($_GET['page']), $totalPages)) : 1;
             $startIndex = ($currentPage - 1) * $postsPerPage;
-
-            // Bài viết hiển thị trên trang hiện tại
             $visiblePosts = array_slice($lastPosts, $startIndex, $postsPerPage);
             ?>
 
             <?php if (!empty($visiblePosts)) : ?>
                 <div id="latest-post">
+                    <!-- Hiển thị nút phân trang -->
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination justify-content-center">
+                            <?php if ($currentPage > 1) : ?>
+                                <li class="page-item">
+                                    <a class="page-link" href="<?= url('/?page=' . ($currentPage - 1)) ?>" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo; Previous</span>
+                                    </a>
+                                </li>
+                            <?php endif; ?>
+
+                            <?php foreach (range(1, $totalPages) as $page) : ?>
+                                <li class="page-item <?= ($page == $currentPage) ? 'active' : '' ?>">
+                                    <a class="page-link" href="<?= url('/?page=' . $page) ?>"><?= $page ?></a>
+                                </li>
+                            <?php endforeach; ?>
+
+                            <?php if ($currentPage < $totalPages) : ?>
+                                <li class="page-item">
+                                    <a class="page-link" href="<?= url('/?page=' . ($currentPage + 1)) ?>" aria-label="Next">
+                                        <span aria-hidden="true">Next &raquo;</span>
+                                    </a>
+                                </li>
+                            <?php endif; ?>
+                        </ul>
+                    </nav>
                     <?php foreach ($visiblePosts as $post) : ?>
                         <div class="content-container m-3">
-                            <!-- Hiển thị thông tin của bài viết -->
                             <div class="post-header">
                                 <a href="<?= url('show-post/' . $post['id']) ?>" class="post-header-link"><?= $post['title'] ?></a>
                             </div>
@@ -112,38 +126,10 @@ require_once(BASE_PATH . '/template/app/layouts/header.php');
                             </div>
                         </div>
                     <?php endforeach; ?>
-
-                    <!-- Hiển thị các nút phân trang -->
-                    <nav aria-label="Page navigation">
-                        <ul class="pagination">
-                            <?php if ($currentPage > 1) : ?>
-                                <li class="page-item">
-                                    <a class="page-link" href="<?= url('/' . ($currentPage - 1)) ?>" aria-label="Previous">
-                                        <span aria-hidden="true">&laquo;</span>
-                                    </a>
-                                </li>
-                            <?php endif; ?>
-
-                            <?php for ($page = 1; $page <= $totalPages; $page++) : ?>
-                                <li class="page-item <?= ($page == $currentPage) ? 'active' : '' ?>">
-                                    <a class="page-link" href="<?= url('/' . $page) ?>"><?= $page ?></a>
-                                </li>
-                            <?php endfor; ?>
-
-                            <?php if ($currentPage < $totalPages) : ?>
-                                <li class="page-item">
-                                    <a class="page-link" href="<?= url('/' . ($currentPage + 1)) ?>" aria-label="Next">
-                                        <span aria-hidden="true">&raquo;</span>
-                                    </a>
-                                </li>
-                            <?php endif; ?>
-                        </ul>
-                    </nav>
-
                 </div>
             <?php endif; ?>
-
         </div>
+
     </div>
 
 </div>

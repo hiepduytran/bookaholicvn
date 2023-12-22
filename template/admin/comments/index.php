@@ -39,7 +39,7 @@ $comments = $db->select($commentsQuery);
                 <option value="<?= $postId ?>" <?= ($postIdFilter == $postId) ? 'selected' : '' ?>><?= $postId ?></option>
             <?php } ?>
         </select>
-        <button type="submit" class="btn btn-primary">Lọc</button>
+        <button type="submit" class="btn btn-primary" style="height: 0px;width: 0px;display: flex;justify-content: center;align-items: center;">Lọc</button>
     </form>
 </div>
 
