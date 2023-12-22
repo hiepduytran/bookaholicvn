@@ -198,6 +198,8 @@ function flash($name, $value = null)
 
 }
 
+// search keyword
+
 //dashboard
 uri('admin', 'Admin\Dashboard', 'index');
 
@@ -266,8 +268,10 @@ uri('forgot/request', 'Auth\Auth', 'forgotRequest', "POST");
 uri('reset-password-form/{forgot_token}', 'Auth\Auth', 'resetPasswordView');
 uri('reset-password/{forgot_token}', 'Auth\Auth', 'resetPassword', "POST");
 
+
 //home
 uri('/', 'App\Home', 'index');
+uri('search/{Search-box}', 'App\Home', 'search', "GET");
 uri('home', 'App\Home', 'index');
 uri('show-post/{id}', 'App\Home', 'show');
 uri('show-category/{id}', 'App\Home', 'category');

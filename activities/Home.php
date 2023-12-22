@@ -121,4 +121,26 @@ class Home
                 header("Location: " . $_SERVER['HTTP_REFERER']);
                 exit;
         }
+
+        // query keyword seach
+        function search() {
+                $searchTerm = '';
+            
+                if ($_SERVER["REQUEST_METHOD"] == "GET") {
+                    $searchTerm = isset($_GET["Search-box"]) ? trim($_GET["Search-box"]) : '';
+                }
+            
+                // Query data từ cơ sở dữ liệu với từ khóa
+                $db = new DataBase();
+                $post_for_search = $db->select(
+                    "SELECT * FROM post
+                    WHERE title LIKE ?
+                    OR summary LIKE ?
+                    OR body LIKE ?;", [$searchTerm])->fetchAll();
+            
+                require_once(BASE_PATH . "/template/app/layouts/header.php");
+                require_once(BASE_PATH . "/template/app/search.php");
+            }
+            
+            
 }

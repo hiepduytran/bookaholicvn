@@ -22,10 +22,9 @@ require_once(BASE_PATH . '/template/app/layouts/header.php');
         <p style="font-weight:700">DANH MỤC: <span><?php echo $name_category; ?></span></p>
     </div>
 
-
-    <!-- Danh sách bài đăng theo danh mục -->
-    <?php foreach ($categoryPosts as $categoryPost) {   ?>
-        <div class="row m-auto d-flex">
+    <div class="row m-auto d-flex">
+        <?php $count = 0; ?>
+        <?php foreach ($categoryPosts as $categoryPost) { ?>
             <div class="col-4">
                 <div class="content-container mb-4">
                     <!-- Tiêu đề -->
@@ -40,20 +39,30 @@ require_once(BASE_PATH . '/template/app/layouts/header.php');
                         <p class="truncate-text"><?= $categoryPost['summary'] ?></p>
                         <a href="<?= url('show-post/' . $categoryPost['id']) ?>">Đọc tiếp >></a>
                     </div>
+
                     <div class="date-and-views">
                         <i class="bi bi-calendar"><?= $categoryPost['created_at'] ?></i>
                         &nbsp; &nbsp;<i class="bi bi-eye"><?= $categoryPost['view'] ?></i>
                         &nbsp; &nbsp;<i class="bi bi-chat"></i>
                         <?php
-                        // Truy vấn để đếm số lượng comment cho bài đăng
+                        // Query to count the number comment of each post.
                         $commentCount = $db->select('SELECT COUNT(*) AS comment_count FROM comments WHERE post_id = ?', [$categoryPost['id']])->fetchColumn();
                         ?>
                         <?= $commentCount ?>
                     </div>
                 </div>
             </div>
-        </div>
-    <?php } ?>
+
+            <?php
+            $count++;
+            // If count % 3 == 0, close div.row and creating a new div. 
+            if ($count % 3 == 0) {
+                echo '</div><div class="row m-auto d-flex">';
+            }
+            ?>
+        <?php } ?>
+    </div>
+
 </div>
 
 <?php

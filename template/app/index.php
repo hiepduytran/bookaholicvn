@@ -82,6 +82,26 @@ require_once(BASE_PATH . '/template/app/layouts/header.php');
             <?php if (!empty($visiblePosts)) : ?>
                 <div id="latest-post">
                     <!-- Hiển thị nút phân trang -->
+                    <?php foreach ($visiblePosts as $post) : ?>
+                        <div class="content-container m-3">
+                            <div class="post-header">
+                                <a href="<?= url('show-post/' . $post['id']) ?>" class="post-header-link"><?= $post['title'] ?></a>
+                            </div>
+                            <div class="image-container">
+                                <img class="w-100 zoom-image" src="<?= asset($post['image']) ?>" alt="<?= $post['title'] ?>">
+                            </div>
+                            <div class="text-container post-content">
+                                <p class="truncate-text"><?= $post['summary'] ?></p>
+                                <a class="continue-reading-link" href="<?= url('show-post/' . $post['id']) ?>">Đọc tiếp</a>
+                            </div>
+                            <div class="date-and-views">
+                                <i class="bi bi-calendar"><?= $post['created_at'] ?></i>
+                                &nbsp; &nbsp;<i class="bi bi-eye"></i> <?= $post['view'] ?>
+                                &nbsp; &nbsp;<i class="bi bi-chat"></i> <?= $post['comments_count'] ?>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+
                     <nav aria-label="Page navigation">
                         <ul class="pagination justify-content-center">
                             <?php if ($currentPage > 1) : ?>
@@ -107,31 +127,10 @@ require_once(BASE_PATH . '/template/app/layouts/header.php');
                             <?php endif; ?>
                         </ul>
                     </nav>
-                    <?php foreach ($visiblePosts as $post) : ?>
-                        <div class="content-container m-3">
-                            <div class="post-header">
-                                <a href="<?= url('show-post/' . $post['id']) ?>" class="post-header-link"><?= $post['title'] ?></a>
-                            </div>
-                            <div class="image-container">
-                                <img class="w-100 zoom-image" src="<?= asset($post['image']) ?>" alt="<?= $post['title'] ?>">
-                            </div>
-                            <div class="text-container post-content">
-                                <p class="truncate-text"><?= $post['summary'] ?></p>
-                                <a class="continue-reading-link" href="<?= url('show-post/' . $post['id']) ?>">Đọc tiếp</a>
-                            </div>
-                            <div class="date-and-views">
-                                <i class="bi bi-calendar"><?= $post['created_at'] ?></i>
-                                &nbsp; &nbsp;<i class="bi bi-eye"></i> <?= $post['view'] ?>
-                                &nbsp; &nbsp;<i class="bi bi-chat"></i> <?= $post['comments_count'] ?>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
                 </div>
             <?php endif; ?>
         </div>
-
     </div>
-
 </div>
 
 <!-- start footer Area -->

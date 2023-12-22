@@ -26,6 +26,11 @@
         <?php } ?>
     </header>
 
+    <!-- Connect to db -->
+    <?php
+        use database\DataBase;
+    ?>
+
     <nav class="navbar navbar-expand-lg bg-white">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,41 +38,49 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- Show categories with links -->
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <?php foreach ($menus as $menu) { ?>
+                    <?php
+                         $db = new DataBase();
+                         $categories = $db->select("SELECT * FROM categories")->fetchAll();
+                    ?>
+
+                    <?php 
+                        // Get current route
+                        $currentUrl = $_SERVER['REQUEST_URI'];
+                        $urlParts = explode('/', trim($currentUrl, '/'));
+
+                        // Get id is last item of array
+                        $categoryId = end($urlParts);
+
+                        // Get id
+                        $selectedCategoryId = is_numeric($categoryId) ? $categoryId : null;
+                    ?>
+
+                    <!-- Active link when user click -->
+                    <?php foreach ($categories as $category) { ?>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="<?= $menu['url'] ?>"><?= $menu['name'] ?></a>
+                            <a class="nav-link <?php echo ($category['id'] == $selectedCategoryId) ? 'active' : ''; ?>"
+                            href="<?= url('show-category/' . $category['id']) ?>">
+                                <?= $category['name'] ?>
+                            </a>
                         </li>
                     <?php } ?>
 
-                    <?php
-                    // Kiểm tra và sử dụng biến $categories từ file home.php nếu đã được định nghĩa
-                    if (isset($categories) && is_array($categories)) {
-                        foreach ($categories as $category) :
-                    ?>
-                            <li class="nav-item">
-                                <a class="nav-link" href="<?= url('show-category/' . $category['id']) ?>"><?= $category['name'] ?></a>
-                            </li>
-                    <?php
-                        endforeach;
-                    }
-                    ?>
+
                 </ul>
 
-                <form class="d-flex" role="search">
+                <form class="d-flex" role="search" action="<?= url('search') ?>">
                     <input class="form-control me-2" type="search" name="Search-box" id="Search-box" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
+                    <button class="btn btn-outline-success" type="submit">Tìm kiếm</button>
                 </form>
-                <?php
 
-                use database\DataBase;
-
-                if (isset($_SESSION['user'])) {
+                <!-- Processing login, logout -->
+                <?php if (isset($_SESSION['user'])) {
                     $db = new DataBase();
                     $userInfo = $db->select("SELECT username, email FROM users WHERE id = ?", [$_SESSION['user']])->fetch();
 
-                    if ($userInfo) {
-                ?>
+                    if ($userInfo) { ?>
                         <ul class="navbar-nav ms-5">
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle me-5" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
