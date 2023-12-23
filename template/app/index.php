@@ -1,43 +1,12 @@
 <?php
 require_once(BASE_PATH . '/template/app/layouts/header.php');
 ?>
- <?php
-        use database\DataBase;
-    ?>
+<?php
+use database\DataBase;
+
+?>
 
 <div class="container-fluid wrap pt-3">
-    <!-- breakings news -->
-    <?php if (!empty($breakingNews)) : ?>
-        <div class="column">
-            <div id="hot-post">
-                <div class="content-container m-3">
-                    <div class="post-header">
-                        <a href="<?= url('show-post/' . $breakingNews['id']) ?>" class="post-header-link"><?= $breakingNews['title'] ?></a>
-                    </div>
-                    <div class="image-container">
-                        <img class="w-100 zoom-image" src="<?= $breakingNews['image'] ?>" alt="<?= $breakingNews['title'] ?>">
-                    </div>
-
-                    <div class="text-container post-content">
-                        <p class="truncate-text"><?= $breakingNews['summary'] ?></p>
-                        <a href="<?= url('show-post/' . $breakingNews['id']) ?>">Đọc tiếp >></a>
-                    </div>
-
-                    <div class="date-and-views">
-                        <i class="bi bi-calendar"><?= $breakingNews['created_at'] ?></i>
-                        &nbsp; &nbsp;<i class="bi bi-eye"></i> <?= $breakingNews['view'] ?>
-                        &nbsp; &nbsp;<i class="bi bi-chat"></i>
-                        <?php
-                        // Truy vấn để đếm số lượng comment cho bài đăng
-                        $commentCount = $db->select('SELECT COUNT(*) AS comment_count FROM comments WHERE post_id = ?', [$breakingNews['id']])->fetchColumn();
-                        ?>
-                        <?= $commentCount ?>
-                    </div>
-                </div>
-            </div>
-        </div>
-    <?php endif; ?>
-
     <div class="row d-flex">
         <div class="col-5" id="most-views-posts-column">
             <!-- Banner Lượt xem nhiều nhất -->
@@ -47,32 +16,44 @@ require_once(BASE_PATH . '/template/app/layouts/header.php');
 
             <!-- Lượt xem nhiều nhất -->
             <!-- PHP -->
-            <?php if (!empty($popularPosts)) : ?>
+            <?php if (!empty($popularPosts)): ?>
                 <div id="most-view-post">
-                    <?php foreach ($popularPosts as $post) : ?>
+                    <?php foreach ($popularPosts as $post): ?>
                         <div class="content-container m-3">
                             <div class="post-header">
-                                <a href="<?= url('show-post/' . $post['id']) ?>" class="post-header-link"><?= $post['title'] ?></a>
+                                <a href="<?= url('show-post/' . $post['id']) ?>" class="post-header-link">
+                                    <?= $post['title'] ?>
+                                </a>
                             </div>
 
                             <?php
-                                    $db = new DataBase();
-                                    $category = $db->select("SELECT name FROM categories WHERE id = ?", [$post['cat_id']])->fetchAll();
+                            $db = new DataBase();
+                            $category = $db->select("SELECT name FROM categories WHERE id = ?", [$post['cat_id']])->fetchAll();
                             ?>
 
                             <div class="image-container">
                                 <img class="w-100 zoom-image" src="<?= asset($post['image']) ?>" alt="<?= $post['title'] ?>">
-                                <div class="image-tag"><?= $category[0]['name'] ?></div>
-                            </div> 
+                                <div class="image-tag">
+                                    <?= $category[0]['name'] ?>
+                                </div>
+                            </div>
 
                             <div class="text-container post-content">
-                                <p class="truncate-text"><?= $post['summary'] ?></p>
+                                <p class="truncate-text">
+                                    <?= $post['summary'] ?>
+                                </p>
                                 <a class="continue-reading-link" href="<?= url('show-post/' . $post['id']) ?>">Đọc tiếp</a>
                             </div>
                             <div class="date-and-views">
-                                <i class="bi bi-calendar"><?= $post['created_at'] ?></i>
-                                <i class="bi bi-eye"> <?= $post['view'] ?></i>
-                                <i class="bi bi-chat"> <?= $post['comments_count'] ?></i>
+                                <i class="bi bi-calendar">
+                                    <?= $post['created_at'] ?>
+                                </i>
+                                <i class="bi bi-eye">
+                                    <?= $post['view'] ?>
+                                </i>
+                                <i class="bi bi-chat">
+                                    <?= $post['comments_count'] ?>
+                                </i>
                             </div>
                         </div>
                     <?php endforeach; ?>
@@ -81,6 +62,48 @@ require_once(BASE_PATH . '/template/app/layouts/header.php');
         </div>
 
         <div class="col-7" id="latest-posts-column">
+            <!-- breakings news -->
+            <?php if (!empty($breakingNews)): ?>
+                <div class="column">
+                    <div id="hot-post">
+                        <div class="content-container m-3">
+                            <div class="post-header">
+                                <a href="<?= url('show-post/' . $breakingNews['id']) ?>" class="post-header-link">
+                                    <?= $breakingNews['title'] ?>
+                                </a>
+                            </div>
+                            <div class="image-container hot-post-image">
+                                <img class="w-100 zoom-image" src="<?= $breakingNews['image'] ?>"
+                                    alt="<?= $breakingNews['title'] ?>">
+                                <div class="image-tag">
+                                    HOT!
+                                </div>
+                            </div>
+
+                            <div class="text-container post-content">
+                                <p class="truncate-text">
+                                    <?= $breakingNews['summary'] ?>
+                                </p>
+                                <a href="<?= url('show-post/' . $breakingNews['id']) ?>">Đọc tiếp >></a>
+                            </div>
+
+                            <div class="date-and-views">
+                                <i class="bi bi-calendar">
+                                    <?= $breakingNews['created_at'] ?>
+                                </i>
+                                &nbsp; &nbsp;<i class="bi bi-eye"></i>
+                                <?= $breakingNews['view'] ?>
+                                &nbsp; &nbsp;<i class="bi bi-chat"></i>
+                                <?php
+                                // Truy vấn để đếm số lượng comment cho bài đăng
+                                $commentCount = $db->select('SELECT COUNT(*) AS comment_count FROM comments WHERE post_id = ?', [$breakingNews['id']])->fetchColumn();
+                                ?>
+                                <?= $commentCount ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endif; ?>
             <?php
             $postsPerPage = 3;
             $totalPosts = count($lastPosts);
@@ -90,54 +113,67 @@ require_once(BASE_PATH . '/template/app/layouts/header.php');
             $visiblePosts = array_slice($lastPosts, $startIndex, $postsPerPage);
             ?>
 
-            <?php if (!empty($visiblePosts)) : ?>
+            <?php if (!empty($visiblePosts)): ?>
                 <div id="latest-post">
                     <!-- Hiển thị nút phân trang -->
-                    <?php foreach ($visiblePosts as $post) : ?>
+                    <?php foreach ($visiblePosts as $post): ?>
                         <div class="content-container m-3">
                             <div class="post-header">
-                                <a href="<?= url('show-post/' . $post['id']) ?>" class="post-header-link"><?= $post['title'] ?></a>
+                                <a href="<?= url('show-post/' . $post['id']) ?>" class="post-header-link">
+                                    <?= $post['title'] ?>
+                                </a>
                             </div>
                             <!-- Thêm tag -->
                             <?php
-                                    $db = new DataBase();
-                                    $category = $db->select("SELECT name FROM categories WHERE id = ?", [$post['cat_id']])->fetchAll();
+                            $db = new DataBase();
+                            $category = $db->select("SELECT name FROM categories WHERE id = ?", [$post['cat_id']])->fetchAll();
                             ?>
 
                             <div class="image-container">
                                 <img class="w-100 zoom-image" src="<?= asset($post['image']) ?>" alt="<?= $post['title'] ?>">
-                                <div class="image-tag"><?= $category[0]['name'] ?></div>
-                            </div> 
+                                <div class="image-tag">
+                                    <?= $category[0]['name'] ?>
+                                </div>
+                            </div>
 
                             <div class="text-container post-content">
-                                <p class="truncate-text"><?= $post['summary'] ?></p>
+                                <p class="truncate-text">
+                                    <?= $post['summary'] ?>
+                                </p>
                                 <a class="continue-reading-link" href="<?= url('show-post/' . $post['id']) ?>">Đọc tiếp</a>
                             </div>
                             <div class="date-and-views">
-                                <i class="bi bi-calendar"><?= $post['created_at'] ?></i>
-                                &nbsp; &nbsp;<i class="bi bi-eye"></i> <?= $post['view'] ?>
-                                &nbsp; &nbsp;<i class="bi bi-chat"></i> <?= $post['comments_count'] ?>
+                                <i class="bi bi-calendar">
+                                    <?= $post['created_at'] ?>
+                                </i>
+                                &nbsp; &nbsp;<i class="bi bi-eye"></i>
+                                <?= $post['view'] ?>
+                                &nbsp; &nbsp;<i class="bi bi-chat"></i>
+                                <?= $post['comments_count'] ?>
                             </div>
                         </div>
                     <?php endforeach; ?>
 
                     <nav aria-label="Page navigation">
                         <ul class="pagination justify-content-center">
-                            <?php if ($currentPage > 1) : ?>
+                            <?php if ($currentPage > 1): ?>
                                 <li class="page-item">
-                                    <a class="page-link" href="<?= url('/?page=' . ($currentPage - 1)) ?>" aria-label="Previous">
+                                    <a class="page-link" href="<?= url('/?page=' . ($currentPage - 1)) ?>"
+                                        aria-label="Previous">
                                         <span aria-hidden="true">&laquo; Previous</span>
                                     </a>
                                 </li>
                             <?php endif; ?>
 
-                            <?php foreach (range(1, $totalPages) as $page) : ?>
+                            <?php foreach (range(1, $totalPages) as $page): ?>
                                 <li class="page-item <?= ($page == $currentPage) ? 'active' : '' ?>">
-                                    <a class="page-link" href="<?= url('/?page=' . $page) ?>"><?= $page ?></a>
+                                    <a class="page-link" href="<?= url('/?page=' . $page) ?>">
+                                        <?= $page ?>
+                                    </a>
                                 </li>
                             <?php endforeach; ?>
 
-                            <?php if ($currentPage < $totalPages) : ?>
+                            <?php if ($currentPage < $totalPages): ?>
                                 <li class="page-item">
                                     <a class="page-link" href="<?= url('/?page=' . ($currentPage + 1)) ?>" aria-label="Next">
                                         <span aria-hidden="true">Next &raquo;</span>
