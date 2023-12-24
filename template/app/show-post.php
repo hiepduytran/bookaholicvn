@@ -49,9 +49,7 @@ require_once(BASE_PATH . '/template/app/layouts/header.php');
                             <form action="<?= url('comment-store') ?>" method="post" class="comment-actions">
                                 <div class="form-group">
                                     <input type="text" value="<?= $post['id'] ?>" name="post_id" class="d-none">
-                                    <textarea class="form-control mb-10 text-left" rows="5" name="comment"
-                                        placeholder="Nhập bình luận của bạn..." onfocus="this.placeholder = ''"
-                                        onblur="this.placeholder = 'Nhập bình luận của bạn...'" required=""></textarea>
+                                    <textarea class="form-control mb-10 text-left" rows="5" name="comment" placeholder="Nhập bình luận của bạn..." onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nhập bình luận của bạn...'" required=""></textarea>
                                 </div>
                                 <button type="submit" class="primary-btn text-uppercase">Gửi bình luận</button>
                             </form>
@@ -64,13 +62,13 @@ require_once(BASE_PATH . '/template/app/layouts/header.php');
         </div>
         <!-- End: Chi tiết bài đăng -->
 
-        <!-- Bài viết mới nhất -->
+        <!-- Bài viết liên quan -->
         <div class="col-md-4 bg-white rounded" style="height: fit-content;">
             <div class="mt-4 mb-5 mx-2">
                 <div class="text-center my-3 border-bottom shadow">
-                    <h3 class="pt-2">Bài viết mới nhất</h3>
+                    <h3 class="pt-2">Bài viết liên quan</h3>
                 </div>
-                <?php foreach ($popularPosts as $post): ?>
+                <?php foreach ($relatedPosts as $post) : ?>
                     <div class="mb-3 border shadow-sm rounded">
                         <div class="post-header">
                             <a href="<?= url('show-post/' . $post['id']) ?>" class="post-header-link">
@@ -101,7 +99,7 @@ require_once(BASE_PATH . '/template/app/layouts/header.php');
                 <?php endforeach; ?>
             </div>
         </div>
-        <!-- End Bài viết mới nhất -->
+        <!-- End Bài viết liên quan -->
     </div>
 </div>
 
