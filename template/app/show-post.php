@@ -5,7 +5,7 @@ require_once(BASE_PATH . '/template/app/layouts/header.php');
 <div class="container-fluid detail-wrapper py-5">
     <div class="row d-flex justify-content-between">
         <!-- CHi tiết bài đăng -->
-        <div class="col-md-7" style="height: fit-content;">
+        <div class="col-md-8" style="height: fit-content;">
             <!-- Content -->
             <div class="content-container mb-4">
                 <div class="post-header">
