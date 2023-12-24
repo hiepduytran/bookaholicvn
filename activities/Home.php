@@ -57,6 +57,10 @@ class Home
 
                 $mostCommentsPosts = $db->select('SELECT posts.*, (SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id) AS comments_count, (SELECT username FROM users WHERE users.id = posts.user_id) AS username, (SELECT name FROM categories WHERE categories.id = posts.cat_id) AS category FROM posts  ORDER BY comments_count DESC LIMIT 0, 4')->fetchAll();
 
+                // view count
+                $db->select('UPDATE posts SET view = view + 1 WHERE id = ?', [$id]);
+
+
                 require_once(BASE_PATH . '/template/app/show-post.php');
         }
 
@@ -123,24 +127,25 @@ class Home
         }
 
         // query keyword seach
-        function search() {
+        function search()
+        {
                 $searchTerm = '';
-            
+
                 if ($_SERVER["REQUEST_METHOD"] == "GET") {
-                    $searchTerm = isset($_GET["Search-box"]) ? trim($_GET["Search-box"]) : '';
+                        $searchTerm = isset($_GET["Search-box"]) ? trim($_GET["Search-box"]) : '';
                 }
-            
+
                 // Query data từ cơ sở dữ liệu với từ khóa
                 $db = new DataBase();
                 $post_for_search = $db->select(
-                    "SELECT * FROM post
+                        "SELECT * FROM post
                     WHERE title LIKE ?
                     OR summary LIKE ?
-                    OR body LIKE ?;", [$searchTerm])->fetchAll();
-            
+                    OR body LIKE ?;",
+                        [$searchTerm]
+                )->fetchAll();
+
                 require_once(BASE_PATH . "/template/app/layouts/header.php");
                 require_once(BASE_PATH . "/template/app/search.php");
-            }
-            
-            
+        }
 }
