@@ -40,8 +40,12 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <!-- Show categories with links -->
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="font-weight: 700; text-transform: uppercase;">
+                    <?php foreach ($menus as $menu) { ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= $menu['url'] ?>"><?= $menu['name'] ?></a>
+                        </li>
+                    <?php } ?>
                     <?php
                     $db = new DataBase();
                     $categories = $db->select("SELECT * FROM categories")->fetchAll();
@@ -59,16 +63,18 @@
                     $selectedCategoryId = is_numeric($categoryId) ? $categoryId : null;
                     ?>
 
-                    <!-- Active link when user click -->
-                    <?php foreach ($categories as $category) { ?>
-                        <li class="nav-item" style="font-weight: 700">
-                            <a class="nav-link <?php echo ($category['id'] == $selectedCategoryId) ? 'active' : ''; ?>" href="<?= url('show-category/' . $category['id']) ?>">
-                                <?= $category['name'] ?>
-                            </a>
-                        </li>
-                    <?php } ?>
-
-
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="categoryDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            DANH MỤC
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="categoryDropdown">
+                            <?php foreach ($categories as $category) { ?>
+                                <a class="dropdown-item <?php echo ($category['id'] == $selectedCategoryId) ? 'active' : ''; ?>" href="<?= url('show-category/' . $category['id']) ?>">
+                                    <?= $category['name'] ?>
+                                </a>
+                            <?php } ?>
+                        </div>
+                    </li>
                 </ul>
 
                 <form class="d-flex" role="search" action="<?= url('search') ?>">
