@@ -25,17 +25,15 @@ require_once(BASE_PATH . "/template/admin/layouts/head-tag.php");
                 <input type="text" class="form-control" id="keywords" name="keywords" placeholder="Nhập từ khóa ..." value="<?php if ($setting != null) echo $setting['keywords']; ?>" autofocus>
             </div>
 
-
             <div class="form-group">
 
                 <label for="logo">Logo</label>
                 <input type="file" id="logo" name="logo" class="form-control-file" autofocus>
 
                 <?php if ($setting != null) { ?>
-                    <img style="width: 100px;" src="<?= asset($setting['logo']); ?>" alt="">
+                    <img style="width: 100px; margin-top: 10px;" src="<?= asset($setting['logo']); ?>" alt="">
                     <hr />
                 <?php } ?>
-
             </div>
 
             <div class="form-group">
@@ -44,7 +42,7 @@ require_once(BASE_PATH . "/template/admin/layouts/head-tag.php");
                 <input type="file" id="icon" name="icon" class="form-control-file" autofocus>
 
                 <?php if ($setting != null) { ?>
-                    <img style="width: 100px;" src="<?= asset($setting['icon']); ?>" alt="">
+                    <img style="width: 100px; margin-top: 10px;" src="<?= asset($setting['icon']); ?>" alt="">
                     <hr />
                 <?php } ?>
             </div>

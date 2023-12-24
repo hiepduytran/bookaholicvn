@@ -25,7 +25,7 @@ require_once(BASE_PATH . '/template/app/layouts/header.php');
     <div class="row m-auto d-flex">
         <?php $count = 0; ?>
         <?php foreach ($categoryPosts as $categoryPost) { ?>
-            <div class="col-4 mx-3">
+            <div class="col-4">
                 <div class="content-container mb-4">
                     <!-- Tiêu đề -->
                     <div class="post-header">

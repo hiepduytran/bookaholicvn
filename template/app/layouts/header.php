@@ -2,7 +2,8 @@
 <html lang="en">
 
 <head>
-    <title>BookaholicVn</title>
+    <title><?= $setting['title'] ?></title>
+    <link rel="icon" href="<?= $setting['icon'] ?>" type="image/x-icon">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -28,7 +29,8 @@
 
     <!-- Connect to db -->
     <?php
-        use database\DataBase;
+
+    use database\DataBase;
     ?>
 
     <nav class="navbar navbar-expand-lg bg-white">
@@ -41,27 +43,26 @@
                 <!-- Show categories with links -->
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <?php
-                         $db = new DataBase();
-                         $categories = $db->select("SELECT * FROM categories")->fetchAll();
+                    $db = new DataBase();
+                    $categories = $db->select("SELECT * FROM categories")->fetchAll();
                     ?>
 
-                    <?php 
-                        // Get current route
-                        $currentUrl = $_SERVER['REQUEST_URI'];
-                        $urlParts = explode('/', trim($currentUrl, '/'));
+                    <?php
+                    // Get current route
+                    $currentUrl = $_SERVER['REQUEST_URI'];
+                    $urlParts = explode('/', trim($currentUrl, '/'));
 
-                        // Get id is last item of array
-                        $categoryId = end($urlParts);
+                    // Get id is last item of array
+                    $categoryId = end($urlParts);
 
-                        // Get id
-                        $selectedCategoryId = is_numeric($categoryId) ? $categoryId : null;
+                    // Get id
+                    $selectedCategoryId = is_numeric($categoryId) ? $categoryId : null;
                     ?>
 
                     <!-- Active link when user click -->
                     <?php foreach ($categories as $category) { ?>
-                        <li class="nav-item" style = "font-weight: 700">
-                            <a class="nav-link <?php echo ($category['id'] == $selectedCategoryId) ? 'active' : ''; ?>"
-                            href="<?= url('show-category/' . $category['id']) ?>">
+                        <li class="nav-item" style="font-weight: 700">
+                            <a class="nav-link <?php echo ($category['id'] == $selectedCategoryId) ? 'active' : ''; ?>" href="<?= url('show-category/' . $category['id']) ?>">
                                 <?= $category['name'] ?>
                             </a>
                         </li>

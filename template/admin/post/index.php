@@ -44,9 +44,6 @@ require_once(BASE_PATH . '/template/admin/layouts/head-tag.php')
                     </td>
                     <td style="text-align: center;">
                         <?php if ($post['breaking_news'] == 2) { ?>
-                            <span class="badge badge-success">#sách_mới_về</span>
-                        <?php }
-                        if ($post['selected'] == 2) { ?>
                             <span class="badge badge-dark">#tác_phẩm_nổi_bật</span>
                         <?php } ?>
                     </td>
@@ -62,13 +59,6 @@ require_once(BASE_PATH . '/template/admin/layouts/head-tag.php')
                     <td style="width: 25rem; text-align: center;">
                         <a role="button" class="btn btn-sm btn-warning btn-info text-dark" href="<?= url('admin/post/breaking-news/' . $post['id']) ?>">
                             <?php if ($post['breaking_news'] == 2) { ?>
-                                Hủy #sách_mới_về
-                            <?php } else { ?>
-                                Thêm #sách_mới_về
-                            <?php } ?>
-                        </a>
-                        <a role="button" class="btn btn-sm btn-warning btn-warning text-dark" href="<?= url('admin/post/selected/' . $post['id']) ?>">
-                            <?php if ($post['selected'] == 2) { ?>
                                 Hủy #tác_phẩm_nổi_bật
                             <?php } else { ?>
                                 Thêm #tác_phẩm_nổi_bật
